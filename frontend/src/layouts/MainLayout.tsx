@@ -48,7 +48,7 @@ const MainLayout = ({ children }: Props) => {
       onClick: () => {
         navigate('/audit');
       },
-      visible: hasRole([UserRole.ADMIN]),
+      visible: hasRole([UserRole.ADMIN, UserRole.APPROVER]),
     },
     {
       key: 'users',
