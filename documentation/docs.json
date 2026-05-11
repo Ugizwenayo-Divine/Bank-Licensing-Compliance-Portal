@@ -1,0 +1,906 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/v1/auth/login": {
+            "post": {
+                "operationId": "AuthController_login",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "auth"
+                ]
+            }
+        },
+        "/api/v1/auth/refresh": {
+            "post": {
+                "operationId": "AuthController_refresh",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "auth"
+                ]
+            }
+        },
+        "/api/v1/users": {
+            "post": {
+                "operationId": "UsersController_create",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUserDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            },
+            "get": {
+                "operationId": "UsersController_findAll",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "schema": {
+                            "example": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of items to fetch per page",
+                        "schema": {
+                            "example": 10,
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/api/v1/users/me": {
+            "get": {
+                "operationId": "UsersController_me",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+        "/api/v1/audit": {
+            "get": {
+                "operationId": "AuditController_findAll",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "schema": {
+                            "example": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of items to fetch per page",
+                        "schema": {
+                            "example": 10,
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "audit"
+                ]
+            }
+        },
+        "/api/v1/audit/application/{applicationId}": {
+            "get": {
+                "operationId": "AuditController_findByApplication",
+                "parameters": [
+                    {
+                        "name": "applicationId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "audit"
+                ]
+            }
+        },
+        "/api/v1/applications": {
+            "post": {
+                "operationId": "ApplicationsController_create",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateApplicationDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            },
+            "get": {
+                "operationId": "ApplicationsController_findAll",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Page number for pagination",
+                        "schema": {
+                            "example": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of items to fetch per page",
+                        "schema": {
+                            "example": 10,
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}": {
+            "put": {
+                "operationId": "ApplicationsController_update",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateApplicationDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            },
+            "get": {
+                "operationId": "ApplicationsController_findOne",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/submit": {
+            "post": {
+                "operationId": "ApplicationsController_submit",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SubmitApplicationDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/start-review": {
+            "post": {
+                "operationId": "ApplicationsController_startReview",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/request-info": {
+            "post": {
+                "operationId": "ApplicationsController_requestInfo",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestInfoDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/complete-review": {
+            "post": {
+                "operationId": "ApplicationsController_completeReview",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewApplicationDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/approve": {
+            "post": {
+                "operationId": "ApplicationsController_approve",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DecisionDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{id}/reject": {
+            "post": {
+                "operationId": "ApplicationsController_reject",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DecisionDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/applications/{applicationId}/documents": {
+            "post": {
+                "operationId": "DocumentsController_upload",
+                "parameters": [
+                    {
+                        "name": "user-agent",
+                        "required": false,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "applicationId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            },
+            "get": {
+                "operationId": "DocumentsController_findAll",
+                "parameters": [
+                    {
+                        "name": "applicationId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "applications"
+                ]
+            }
+        },
+        "/api/v1/documents/{id}/download": {
+            "get": {
+                "operationId": "DocumentDownloadController_download",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "security": [
+                    {
+                        "JWT-auth": []
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Bank Licensing & Compliance",
+        "description": "The API for managing bank license applications and compliance.",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "securitySchemes": {
+            "JWT-auth": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http",
+                "name": "JWT",
+                "description": "Enter JWT token",
+                "in": "header"
+            }
+        },
+        "schemas": {
+            "LoginDto": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ]
+            },
+            "CreateUserDto": {
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "password",
+                    "role"
+                ]
+            },
+            "CreateApplicationDto": {
+                "type": "object",
+                "properties": {
+                    "institutionName": {
+                        "type": "string"
+                    },
+                    "institutionType": {
+                        "type": "string"
+                    },
+                    "businessDescription": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "type": "string"
+                    },
+                    "contactEmail": {
+                        "type": "string"
+                    },
+                    "contactPhone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "institutionName",
+                    "institutionType",
+                    "businessDescription"
+                ]
+            },
+            "UpdateApplicationDto": {
+                "type": "object",
+                "properties": {
+                    "institutionName": {
+                        "type": "string"
+                    },
+                    "institutionType": {
+                        "type": "string"
+                    },
+                    "businessDescription": {
+                        "type": "string"
+                    },
+                    "registrationNumber": {
+                        "type": "string"
+                    },
+                    "contactEmail": {
+                        "type": "string"
+                    },
+                    "contactPhone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SubmitApplicationDto": {
+                "type": "object",
+                "properties": {
+                    "comment": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestInfoDto": {
+                "type": "object",
+                "properties": {
+                    "requestedInfo": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "requestedInfo"
+                ]
+            },
+            "ReviewApplicationDto": {
+                "type": "object",
+                "properties": {
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "notes"
+                ]
+            },
+            "DecisionDto": {
+                "type": "object",
+                "properties": {
+                    "notes": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "notes"
+                ]
+            }
+        }
+    }
+}
